@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/railway_track.obj-6ae72835c24400f153c201761e79b826.mesh"
+
+[deps]
+
+files=[ "res://.import/railway_track.obj-6ae72835c24400f153c201761e79b826.mesh" ]
+
+source_file="res://level_3d/railway_track/railway_track.obj"
+dest_files=[ "res://.import/railway_track.obj-6ae72835c24400f153c201761e79b826.mesh", "res://.import/railway_track.obj-6ae72835c24400f153c201761e79b826.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

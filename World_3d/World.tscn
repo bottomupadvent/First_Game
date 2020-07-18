@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Player_3d/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://People_3d/People.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World_3d/World.gd" type="Script" id=3]
+[ext_resource path="res://Train_3d/Train.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World_3d/platform_final.meshlib" type="MeshLibrary" id=5]
+[ext_resource path="res://World_3d/shop_dustbin_bench.meshlib" type="MeshLibrary" id=6]
+[ext_resource path="res://World_3d/railway_track.meshlib" type="MeshLibrary" id=7]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, 0 )
+script = ExtResource( 3 )
+People = ExtResource( 2 )
+
+[node name="GridMap3" type="GridMap" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0 )
+mesh_library = ExtResource( 7 )
+cell_scale = 2.0
+data = {
+"cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 0, 16, 65277, 1610612736, 16, 65302, 0, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 1073741824, 16, 65477, -2147483648, 16, 65502, 1073741824, 16, 65527, 1073741824 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, -7, 0 )
+mesh_library = ExtResource( 5 )
+cell_scale = 6.0
+collision_layer = 0
+collision_mask = 0
+data = {
+"cells": PoolIntArray( 5, 33, 536870912, 5, 106, 0, 5, 179, -1073741824, 5, 252, -1073741824, 5, 325, 1610612736, 5, 399, 1073741824 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="GridMap2" type="GridMap" parent="."]
+transform = Transform( -2.44381e-07, 0, 1.5, 0, 1.5, 0, -1.5, 0, -2.44381e-07, 0, 0, 0 )
+mesh_library = ExtResource( 6 )
+data = {
+"cells": PoolIntArray( 13, 65522, 2, 61, 65522, 2, 90, 65522, 2, 11, 65524, 0, 59, 65524, -1073741824, 89, 65524, 1610612736, 29, 65528, -1073741823, 54, 65528, 1073741825, 45, 65530, 1610612737, 7, 65531, 1073741825, 17, 65531, 1073741825 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.7, 0 )
+
+[node name="People" parent="." instance=ExtResource( 2 )]
+
+[node name="Train" parent="." instance=ExtResource( 4 )]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.361976, -0.652143, 0.666096, -0.170607, 0.748828, 0.640429, -0.916443, 0.118179, -0.382318, 49.9001, 0, -67.679 )
+light_color = Color( 0.54902, 0.831373, 0.870588, 1 )
+shadow_enabled = true
+shadow_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+directional_shadow_mode = 0
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 20.0

@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://World/World.gd" type="Script" id=1]
+[ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://People/People.tscn" type="PackedScene" id=4]
+[ext_resource path="res://TileMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Train.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 100, 600, 0, 0, 0, 0, -1066, -2018 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 190, 600, 0, 0, 0, 0, -976, -2018 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 280, 600, 0, 0, 0, 0, -886, -2018 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 370, 600, 0, 0, 0, 0, -798, -2023 )
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+People = ExtResource( 4 )
+
+[node name="Node2D" parent="." instance=ExtResource( 5 )]
+
+[node name="Train" parent="." instance=ExtResource( 6 )]
+
+[node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( 320, 760 )
+
+[node name="People" parent="." instance=ExtResource( 4 )]
+position = Vector2( -132, 588 )
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
+
+[node name="Path1" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path1"]
+position = Vector2( 100, 600 )
+rotation = -1.98979
+
+[node name="Path2" type="Path2D" parent="."]
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2"]
+position = Vector2( 190, 600 )
+rotation = -1.9898
+
+[node name="Path3" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path3"]
+position = Vector2( 280, 600 )
+rotation = -1.98979
+
+[node name="Path4" type="Path2D" parent="."]
+curve = SubResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path4"]
+position = Vector2( 370, 600 )
+rotation = -1.98973
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 200, 417 )
+
+[node name="YSort" type="YSort" parent="."]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
