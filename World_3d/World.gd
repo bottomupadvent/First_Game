@@ -24,5 +24,7 @@ func _ready():
         # print ("rotation_degrees.y ", person.rotation_degrees.y)
         # print (person.stop_pos)
         person.set_start_timer()
-        
-        
+
+
+func _on_Button_pressed():
+    get_tree().reload_current_scene()

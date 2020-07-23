@@ -13,7 +13,9 @@ func _ready():
 func _physics_process(delta):
     if !$Player_anim/AnimationPlayer.is_playing():
         $Player_anim/AnimationPlayer.play("Running")
-    
+#    if !$Tween.is_active():
+#       constant_speed = Vector3(0, 0, -15)
+        
     velocity = move_and_slide(constant_speed)
     
 func _input(event):
@@ -34,18 +36,18 @@ func _calculate_swipe(swipe_end):
 
 func _on_Player_swipe(direction):
     if direction == "right":
-        var move_to_right = get_translation() + Vector3(7.5, 0, -10)
-        $Player_anim/AnimationPlayer.play("Jump_right")
+        var move_to_right = get_translation() + Vector3(7.0, 0, -5)
+#        $Player_anim/AnimationPlayer.play("Jump_right", -1, 1.4)
         $Tween.interpolate_property(self, "translation", get_translation(),
-                                    move_to_right, 0.7, Tween.TRANS_LINEAR, 
+                                    move_to_right, 0.2, Tween.TRANS_LINEAR, 
                                     Tween.EASE_IN_OUT)
         $Tween.start()
         # $Idle/AnimationPlayer.animation_set_next("Jump_right", "Running")
     else:
-        var move_to_left = get_translation() + Vector3(-7.5, 0, -10)
-        $Player_anim/AnimationPlayer.play("Jump_left")
+        var move_to_left = get_translation() + Vector3(-7.0, 0, -5)
+#        $Player_anim/AnimationPlayer.play("Jump_left", -1, 1.4)
         $Tween.interpolate_property(self, "translation", get_translation(),
-                                    move_to_left, 0.7, Tween.TRANS_LINEAR, 
+                                    move_to_left, 0.2, Tween.TRANS_LINEAR, 
                                     Tween.EASE_IN_OUT)
         $Tween.start()
         

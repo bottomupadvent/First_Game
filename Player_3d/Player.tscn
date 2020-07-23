@@ -173,14 +173,14 @@ anims/Jump_checking = SubResource( 3 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="CameraFollow" type="Spatial" parent="."]
-transform = Transform( 0.863946, 0.329336, -0.380966, 0.110635, 0.613897, 0.781595, 0.491281, -0.717404, 0.493938, -1.037, 19.584, 2.44888 )
+transform = Transform( 0.939936, 0.212696, -0.266985, -0.0606598, 0.87377, 0.482541, 0.335918, -0.437362, 0.83419, -0.867565, 20.4453, 15.518 )
 
 [node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
-transform = Transform( 0.879449, 0.404258, -0.251286, -0.143031, 0.727961, 0.670534, 0.453995, -0.553759, 0.698026, -1.03748, 19.5836, 2.44838 )
-projection = 1
-size = 35.0
-near = 0.01
+transform = Transform( 0.928808, 0.230906, -0.289824, -0.0654412, 0.872039, 0.485042, 0.364737, -0.431544, 0.825068, -0.160556, 17.2875, 12.3266 )
+current = true
+size = 37.0
 target = NodePath("../CameraFollow")
+speed = 0.1
 enabled = true
 [connection signal="swipe" from="." to="." method="_on_Player_swipe"]
 

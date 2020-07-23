@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/train_2nd_dabba-0.obj-09974f65ca629c079debd598bf6d687e.mesh"
+
+[deps]
+
+files=[ "res://.import/train_2nd_dabba-0.obj-09974f65ca629c079debd598bf6d687e.mesh" ]
+
+source_file="res://level_3d/train/train_2nd_dabba-0.obj"
+dest_files=[ "res://.import/train_2nd_dabba-0.obj-09974f65ca629c079debd598bf6d687e.mesh", "res://.import/train_2nd_dabba-0.obj-09974f65ca629c079debd598bf6d687e.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
