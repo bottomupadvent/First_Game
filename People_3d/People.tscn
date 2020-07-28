@@ -21,7 +21,6 @@ material/0 = null
 visible = false
 
 [node name="Tween" type="Tween" parent="."]
-playback_process_mode = 0
 
 [node name="People_anim" parent="." instance=ExtResource( 2 )]
 

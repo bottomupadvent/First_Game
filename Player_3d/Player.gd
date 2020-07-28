@@ -11,19 +11,19 @@ func _ready():
     pass
 
 func _physics_process(delta):
-    if !$Player_anim/AnimationPlayer.is_playing():
-        $Player_anim/AnimationPlayer.play("Running")
+    if !$AnimationPlayer.is_playing():
+        $AnimationPlayer.play("Running")
 #    if !$Tween.is_active():
 #       constant_speed = Vector3(0, 0, -15)
         
-    velocity = move_and_slide(constant_speed)
+    constant_speed = move_and_slide(constant_speed)
     
 func _input(event):
     if event.is_action_pressed("click"):
         swipe_start = event.position
     if event.is_action_released("click"):
         _calculate_swipe(event.position)
-        
+
 func _calculate_swipe(swipe_end):
     if swipe_start == null: 
         return
@@ -50,5 +50,5 @@ func _on_Player_swipe(direction):
                                     move_to_left, 0.2, Tween.TRANS_LINEAR, 
                                     Tween.EASE_IN_OUT)
         $Tween.start()
-        
+
        #  $Idle/AnimationPlayer.animation_set_next("Jump_left", "Running")

@@ -157,6 +157,7 @@ material/0 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
+playback_process_mode = 0
 anims/Idle = ExtResource( 1 )
 anims/Running = ExtResource( 3 )
 anims/Walk = ExtResource( 4 )

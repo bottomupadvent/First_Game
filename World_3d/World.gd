@@ -13,9 +13,9 @@ func _ready():
         print ("person.translation ", person.translation)
         person.stop_pos = Vector3(randi() % 42 + -15, 1, 
                                 -1*(randi() % 200 + 50))
-        
+
         var direction_to = person.translation.direction_to(person.stop_pos)
-                                    
+
         var stop_pos_vec2 = Vector2(person.stop_pos.x, person.stop_pos.z)                            
         var angle = atan2(direction_to.x, direction_to.z)
         var person_rot = person.get_rotation()
