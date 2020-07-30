@@ -3,9 +3,11 @@ extends KinematicBody
 var tilesize = 5
 signal swipe
 var swipe_start = null
-var minimum_drag = 30
+var minimum_drag = 20
 var velocity = Vector3(0, 0, 0)
-var constant_speed = Vector3(0, 0, -15)
+var constant_speed = Vector3(0, 0, -29)
+var first_button_press = true
+onready var sprint_button = get_node("../HUD/Sprint")
 # Called when the node enters the scene tree for the first time.
 func _ready():
     pass
@@ -52,3 +54,29 @@ func _on_Player_swipe(direction):
         $Tween.start()
 
        #  $Idle/AnimationPlayer.animation_set_next("Jump_left", "Running")
+
+
+func _on_Area_body_entered(body):
+    $AnimationPlayer.play("Blink")
+    
+#func _on_SprintTimer_timeout():
+#    $Sprint.set_disabled(true)
+#    constant_speed = Vector3(0, 0, -25)
+
+func _on_Sprint_button_down():
+    if (first_button_press == true):
+        first_button_press = false
+        $SprintTimeout.start($SprintTimeout.wait_time)
+    else:
+        $SprintTimeout.set_paused(false)
+        
+    constant_speed += Vector3(0, 0, -7)
+
+func _on_Sprint_button_up():
+    $SprintTimeout.set_paused(true)
+    constant_speed += Vector3(0, 0, 7)
+
+func _on_SprintTimeout_timeout():
+    sprint_button.set_disabled(true)
+    constant_speed = Vector3(0, 0, -29)
+    

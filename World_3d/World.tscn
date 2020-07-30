@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player_3d/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://People_3d/People.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World_3d/World.gd" type="Script" id=3]
 [ext_resource path="res://Train_3d/Train.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World_3d/platform_final.meshlib" type="MeshLibrary" id=5]
+[ext_resource path="res://Hud_3d/HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World_3d/railway_track.meshlib" type="MeshLibrary" id=7]
 
 [node name="Spatial" type="Spatial"]
@@ -12,35 +13,32 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, 0 )
 script = ExtResource( 3 )
 People = ExtResource( 2 )
 
-[node name="GridMap3" type="GridMap" parent="."]
+[node name="Track" type="GridMap" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0 )
 mesh_library = ExtResource( 7 )
 cell_scale = 2.0
 data = {
-"cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 0, 16, 65277, 0, 16, 65302, 0, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 0, 16, 65477, 1073741824, 16, 65502, 0, 16, 65527, 0 )
+"cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 0, 16, 65277, 0, 16, 65302, 0, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 0, 16, 65477, 0, 16, 65502, 0, 16, 65527, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
 
-[node name="GridMap" type="GridMap" parent="."]
-transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, -7, 0 )
+[node name="Platform" type="GridMap" parent="."]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -7, 0 )
 mesh_library = ExtResource( 5 )
-cell_size = Vector3( 3, 11, 10 )
+cell_size = Vector3( 1, 1, 151.8 )
 cell_scale = 6.0
-collision_layer = 0
-collision_mask = 0
 data = {
-"cells": PoolIntArray( 3, 7, 0 )
+"cells": PoolIntArray( 10, 0, -1610612736, 10, 1, -1610612736, 10, 2, -1610612736, 10, 3, -1610612736, 10, 4, -1610612736, 10, 65535, 0 )
 }
 __meta__ = {
-"_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 0, 0 )
+"_editor_clip_": 0
 }
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.7, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.0939724, 0 )
 
 [node name="CameraFollowOrth" type="Spatial" parent="Player"]
 transform = Transform( 0.830483, 0.277437, -0.483039, 0.235242, 0.611353, 0.755585, 0.504934, -0.741132, 0.442454, -13.1548, 33.7909, 1.83179 )
@@ -51,21 +49,7 @@ transform = Transform( 0.909727, 0.135159, -0.392592, 0.235242, 0.611353, 0.7555
 visible = false
 
 [node name="People" parent="." instance=ExtResource( 2 )]
-
-[node name="Button" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -58.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = 21.0
-action_mode = 0
-text = "Restart"
-flat = true
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+visible = false
 
 [node name="Train" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.252, -8.88976, -29 )
@@ -76,4 +60,30 @@ shadow_enabled = true
 shadow_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 directional_shadow_mode = 0
 directional_shadow_blend_splits = true
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+
+[node name="AddPlatformTile" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="RemovePlatformTile" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AddRailwayTile" type="Timer" parent="."]
+autostart = true
+
+[node name="RemoveRailwayTile" type="Timer" parent="."]
+autostart = true
+[connection signal="pressed" from="HUD/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="button_down" from="HUD/Sprint" to="Player" method="_on_Sprint_button_down"]
+[connection signal="button_up" from="HUD/Sprint" to="Player" method="_on_Sprint_button_up"]
+[connection signal="timeout" from="AddPlatformTile" to="." method="_on_AddPlatformTile_timeout"]
+[connection signal="timeout" from="RemovePlatformTile" to="." method="_on_RemovePlatformTile_timeout"]
+[connection signal="timeout" from="AddRailwayTile" to="." method="_on_AddRailwayTile_timeout"]
+[connection signal="timeout" from="RemoveRailwayTile" to="." method="_on_RemoveRailwayTile_timeout"]
+
+[editable path="Player"]
+
+[editable path="HUD"]

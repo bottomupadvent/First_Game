@@ -1,0 +1,29 @@
+[gd_scene format=2]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -62.0
+margin_top = 7.0
+margin_right = -5.0
+margin_bottom = 27.0
+text = "Restart"
+
+[node name="Sprint" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -23.0
+margin_right = 57.0
+margin_bottom = -3.0
+text = "Sprint"
+__meta__ = {
+"_edit_use_anchors_": false
+}

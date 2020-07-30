@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var constant_speed = Vector3(0, 0, -14)
+var constant_speed = Vector3(0, 0, -28)
 
 func _ready():
     pass

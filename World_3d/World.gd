@@ -1,6 +1,12 @@
 extends Spatial
 
 export (PackedScene) var People
+onready var track = $Track
+onready var platform = $Platform
+var add_platform_tile = 5
+var del_platform_tile = -1
+var add_railway_tile = -409
+var del_railway_tile = -9
 
 func _ready():
     randomize()  
@@ -10,7 +16,6 @@ func _ready():
         person.translation = Vector3(randi() % 42 + -15, 1, 
                                    -1*(randi() % 200 + 50))
         var start_pos_vec2 = Vector2(person.translation.x, person.translation.z)
-        print ("person.translation ", person.translation)
         person.stop_pos = Vector3(randi() % 42 + -15, 1, 
                                 -1*(randi() % 200 + 50))
 
@@ -26,5 +31,25 @@ func _ready():
         person.set_start_timer()
 
 
-func _on_Button_pressed():
+func _on_Restart_pressed():
     get_tree().reload_current_scene()
+
+func _on_AddPlatformTile_timeout():
+    print ("add platform tile")
+    platform.set_cell_item(10, 0, add_platform_tile, 0)
+    add_platform_tile += 1
+
+func _on_RemovePlatformTile_timeout():
+    print ("del platform tile")
+    platform.set_cell_item(10, 0, del_platform_tile, -1)
+    del_platform_tile += 1
+
+func _on_AddRailwayTile_timeout():
+    print ("add railway tile")
+    track.set_cell_item(16, 0, add_railway_tile, 0)
+    add_railway_tile = -1 * (add_railway_tile + 25)
+    
+func _on_RemoveRailwayTile_timeout():
+    print ("del railway tile")
+    track.set_cell_item(16, 0, del_railway_tile, -1)
+    del_railway_tile -= 25

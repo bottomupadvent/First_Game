@@ -2,11 +2,14 @@ extends KinematicBody
 
 var total_people = 10
 var stop_pos = Vector3()
+onready var Player = get_node("../Player")
 
 func _ready():
     pass
 
 func _physics_process(delta):
+    if get_translation().z - 30 > Player.get_translation().z:
+        queue_free()
     if get_translation() == stop_pos:
         $People_anim/AnimationPlayer.play("Idle")
 

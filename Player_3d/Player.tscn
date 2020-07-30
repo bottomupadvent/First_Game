@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player_3d/Player.gd" type="Script" id=1]
 [ext_resource path="res://mixamo/player/jump/Jump_left.anim" type="Animation" id=3]
@@ -21,6 +21,26 @@ surfaces/0 = {
 "skeleton_aabb": [ AABB( 0.019, 0.017, -0.007, 0.02, 0.00701, 0.015 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.018, 0.039, -0.007, 0.022, 0.007, 0.015 ), AABB( 0.021, 0.044, -0.007, 0.015, 0.007, 0.015 ), AABB( 0.02, 0.044, -0.007, 0.018, 0.017, 0.015 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.033, 0.039, -0.007, 0.00701, 0.005, 0.015 ), AABB( 0.034, 0.039, -0.007, 0.02, 0.00401, 0.015 ), AABB( 0.04, 0.039, -0.004, 0.017, 0.005, 0.007 ), AABB( 0.039, 0.039, -0.004, 0.023, 0.005, 0.007 ), AABB( 0.018, 0.039, -0.007, 0.007, 0.005, 0.015 ), AABB( 0.018, 0.039, -0.006, 0.003, 0.004, 0.013 ), AABB( 0.002, 0.039, -0.003, 0.016, 0.005, 0.007 ), AABB( -0.004, 0.039, -0.003, 0.023, 0.005, 0.007 ), AABB( 0.027, 0.011, -0.007, 0.012, 0.013, 0.015 ), AABB( 0.03, 0.008, -0.003, 0.008, 0.01, 0.01 ), AABB( 0.03, 0.008, -0.003, 0.008, 0.01, 0.011 ), AABB( 0.03, 0.008, -0.003, 0.008, 0.008, 0.011 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.019, 0.013, -0.007, 0.012, 0.01101, 0.015 ), AABB( 0.02, 0.008, -0.003, 0.008, 0.01, 0.00701 ), AABB( 0.02, 0.008, -0.003, 0.008, 0.01, 0.011 ), AABB( 0.02, 0.008, -0.003, 0.008, 0.008, 0.011 ) ],
 "vertex_count": 1983
 }
+
+[sub_resource type="Animation" id=3]
+resource_name = "Blink"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("unamed:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ false, true, false, true, false, true, false, true ]
+}
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 1.33587
+height = 1.72582
 
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0 )
@@ -163,15 +183,26 @@ material/0 = null
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Skeleton")
 autoplay = "Running"
+anims/Blink = SubResource( 3 )
 anims/Jump_left = ExtResource( 3 )
 anims/Jump_right = ExtResource( 4 )
 anims/Running = ExtResource( 5 )
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 0.891323, 0.215076, -0.399105, 0.0942528, 0.773172, 0.627154, 0.443463, -0.596613, 0.668875, -0.363495, 18.0177, 3.14612 )
 projection = 1
 current = true
 size = 42.0
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 7.48816, 2.49323, -0.20932 )
+shape = SubResource( 2 )
+
+[node name="SprintTimeout" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 [connection signal="swipe" from="." to="." method="_on_Player_swipe"]
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="timeout" from="SprintTimeout" to="." method="_on_SprintTimeout_timeout"]
