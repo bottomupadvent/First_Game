@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://mixamo/people/idle/default.anim" type="Animation" id=1]
-[ext_resource path="res://mixamo/people/idle/palettemat.material" type="Material" id=2]
-[ext_resource path="res://mixamo/people/running/Running.anim" type="Animation" id=3]
-[ext_resource path="res://mixamo/people/walking/Walk.anim" type="Animation" id=4]
+[ext_resource path="res://mixamo/people/walking/Walk.anim" type="Animation" id=1]
+[ext_resource path="res://mixamo/people/running/Running.anim" type="Animation" id=2]
+[ext_resource path="res://mixamo/people/idle/default.anim" type="Animation" id=3]
+[ext_resource path="res://mixamo/people/idle/palettemat.material" type="Material" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "unamedMesh"
@@ -14,7 +14,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97751,
 "index_count": 4182,
-"material": ExtResource( 2 ),
+"material": ExtResource( 4 ),
 "name": "palettemat",
 "primitive": 4,
 "skeleton_aabb": [ AABB( -0.017, 0.017, -0.008, 0.02, 0.00701, 0.015 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.019, 0.039, -0.008, 0.023, 0.006, 0.015 ), AABB( -0.014, 0.044, -0.008, 0.014, 0.005, 0.015 ), AABB( -0.016, 0.044, -0.008, 0.018, 0.017, 0.015 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.002, 0.039, -0.008, 0.00601, 0.00401, 0.015 ), AABB( 0.001, 0.039, -0.008, 0.017, 0.00401, 0.015 ), AABB( 0.003, 0.039, -0.004, 0.017, 0.005, 0.007 ), AABB( 0.003, 0.039, -0.004, 0.023, 0.005, 0.007 ), AABB( -0.019, 0.039, -0.008, 0.007, 0.004, 0.015 ), AABB( -0.033, 0.039, -0.008, 0.018, 0.004, 0.015 ), AABB( -0.034, 0.039, -0.004, 0.017, 0.005, 0.007 ), AABB( -0.04, 0.039, -0.004, 0.022, 0.005, 0.007 ), AABB( -0.009, 0.011, -0.008, 0.012, 0.013, 0.015 ), AABB( -0.006, 0.008, -0.004, 0.008, 0.01, 0.011 ), AABB( -0.006, 0.008, -0.004, 0.008, 0.01, 0.011 ), AABB( -0.006, 0.008, -0.004, 0.008, 0.008, 0.011 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.017, 0.013, -0.008, 0.012, 0.01101, 0.015 ), AABB( -0.016, 0.008, -0.004, 0.008, 0.01, 0.00701 ), AABB( -0.016, 0.008, -0.004, 0.008, 0.01, 0.011 ), AABB( -0.016, 0.008, -0.004, 0.008, 0.008, 0.011 ) ],
@@ -158,6 +158,6 @@ material/0 = null
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_process_mode = 0
-anims/Idle = ExtResource( 1 )
-anims/Running = ExtResource( 3 )
-anims/Walk = ExtResource( 4 )
+anims/Idle = ExtResource( 3 )
+anims/Running = ExtResource( 2 )
+anims/Walk = ExtResource( 1 )
