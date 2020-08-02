@@ -1,6 +1,6 @@
 # Import cache
 .import/
-
+.apk
 # Binaries
 bin/
 build/
