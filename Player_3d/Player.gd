@@ -41,7 +41,7 @@ func _on_Player_swipe(direction):
         var move_to_right = get_translation() + Vector3(7.0, 0, -5)
 #        $Player_anim/AnimationPlayer.play("Jump_right", -1, 1.4)
         $Tween.interpolate_property(self, "translation", get_translation(),
-                                    move_to_right, 0.2, Tween.TRANS_LINEAR, 
+                                    move_to_right, 0.1, Tween.TRANS_LINEAR, 
                                     Tween.EASE_IN_OUT)
         $Tween.start()
         # $Idle/AnimationPlayer.animation_set_next("Jump_right", "Running")
@@ -49,7 +49,7 @@ func _on_Player_swipe(direction):
         var move_to_left = get_translation() + Vector3(-7.0, 0, -5)
 #        $Player_anim/AnimationPlayer.play("Jump_left", -1, 1.4)
         $Tween.interpolate_property(self, "translation", get_translation(),
-                                    move_to_left, 0.2, Tween.TRANS_LINEAR, 
+                                    move_to_left, 0.1, Tween.TRANS_LINEAR, 
                                     Tween.EASE_IN_OUT)
         $Tween.start()
 
