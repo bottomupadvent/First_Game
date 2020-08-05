@@ -8,17 +8,21 @@ var add_platform_tile = 5
 var del_platform_tile = -1
 var add_railway_tile = 409
 var del_railway_tile = 9
+var person
 
 func _ready():
     randomize()  
     for i in range($People.total_people): 
-        var person = Person1.instance()
+        if (i%2 == 0):
+            person = Person1.instance()
+        else:
+            person = Person2.instance()
         add_child(person)
-        person.translation = Vector3(randi() % 42 + -15, 0, 
-                                   -1*(randi() % 700 + 50))
+        person.translation = Vector3(randi() % 35 + -15, 0, 
+                                   -1*(randi() % 1100 + 50))
 #        var start_pos_vec2 = Vector2(person.translation.x, person.translation.z)
-        person.stop_pos = Vector3(randi() % 42 + -15, 0, 
-                                -1*(randi() % 700 + 50))
+        person.stop_pos = Vector3(randi() % 35 + -15, 0, 
+                                -1*(randi() % 1100 + 50))
 
         var direction_to = person.translation.direction_to(person.stop_pos)
 

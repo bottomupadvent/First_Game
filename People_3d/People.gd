@@ -1,8 +1,8 @@
 extends KinematicBody
 
-var total_people = 10
+var total_people = 30
 var stop_pos = Vector3()
-var speed = 10
+var speed = 5
 var can_move = false
 onready var Player = get_node("../Player")
 var direction_to
@@ -17,7 +17,6 @@ func _physics_process(delta):
         queue_free()
     if get_translation() == stop_pos:
         $People_anim/AnimationPlayer.play("Idle")
-        return
     
 func set_start_timer():
     $StartTimer.wait_time = randi() % 10 + 1

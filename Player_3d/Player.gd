@@ -3,7 +3,7 @@ extends KinematicBody
 var tilesize = 5
 signal swipe
 var swipe_start = null
-var minimum_drag = 20
+var minimum_drag = 15
 var velocity = Vector3(0, 0, 0)
 var constant_speed = Vector3(0, 0, -29)
 var first_button_press = true
