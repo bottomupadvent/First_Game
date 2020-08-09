@@ -1,7 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player_3d/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://People_3d/People.tscn" type="PackedScene" id=2]
 [ext_resource path="res://World_3d/World.gd" type="Script" id=3]
 [ext_resource path="res://Train_3d/Train.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World_3d/platform_final.meshlib" type="MeshLibrary" id=5]
@@ -9,19 +8,21 @@
 [ext_resource path="res://World_3d/railway_track.meshlib" type="MeshLibrary" id=7]
 [ext_resource path="res://People_3d/Person1.tscn" type="PackedScene" id=8]
 [ext_resource path="res://People_3d/Person2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://World_3d/Coin.tscn" type="PackedScene" id=10]
 
-[node name="Spatial" type="Spatial"]
+[node name="World" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, 0 )
 script = ExtResource( 3 )
 Person1 = ExtResource( 8 )
 Person2 = ExtResource( 9 )
+Coin = ExtResource( 10 )
 
 [node name="Track" type="GridMap" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 0 )
 mesh_library = ExtResource( 7 )
 cell_scale = 2.0
 data = {
-"cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 0, 16, 65277, 1610612736, 16, 65302, 536870912, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 0, 16, 65477, 0, 16, 65502, 0, 16, 65527, 0 )
+"cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 0, 16, 65277, 0, 16, 65302, 0, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 0, 16, 65477, 0, 16, 65502, 0, 16, 65527, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -44,27 +45,13 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.0939724, 0 )
 
 [node name="CameraFollowOrth" type="Spatial" parent="Player"]
-transform = Transform( 0.830483, 0.277437, -0.483039, 0.235242, 0.611353, 0.755585, 0.504934, -0.741132, 0.442454, -13.1548, 33.7909, -18.166 )
+transform = Transform( 0.830483, 0.277437, -0.483039, 0.235242, 0.611353, 0.755585, 0.504934, -0.741132, 0.442454, -13.1548, 31.8782, 2.87514 )
 
 [node name="CameraFollowPers" type="Spatial" parent="Player"]
-transform = Transform( 0.909727, 0.135159, -0.392592, 0.235242, 0.611353, 0.755585, 0.342136, -0.779731, 0.52437, -6.71278, 25.8046, -9.52722 )
-visible = false
-
-[node name="People" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.702793, 0 )
-visible = false
+transform = Transform( 0.909727, 0.135159, -0.392592, 0.235242, 0.611353, 0.755585, 0.342136, -0.779731, 0.52437, -6.713, 25.688, -17.3173 )
 
 [node name="Train" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.252, -8.88976, -390.653 )
-
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.6882, 24.9158 )
-cull_mask = 1
-projection = 1
-current = true
-size = 42.0
-target = NodePath("../Player/CameraFollowOrth")
-enabled = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.252, -8.88976, -166.419 )
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
@@ -83,6 +70,26 @@ autostart = true
 [node name="RemoveRailwayTile" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="Coin" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5714, -0.551606, 27.7891 )
+visible = false
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 65.9321, 24.9158 )
+projection = 1
+current = true
+size = 46.0
+target = NodePath("../Player/CameraFollowOrth")
+speed = 2.0
+enabled = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.987716, -2.54583e-08, 0.156262, -0.156262, -1.60919e-07, 0.987716, 0, -1, -1.62921e-07, 67.489, 46.2989, 0 )
+light_color = Color( 0.247059, 0.364706, 0.360784, 1 )
+directional_shadow_mode = 0
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 20.0
 [connection signal="pressed" from="HUD/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="button_down" from="HUD/Sprint" to="Player" method="_on_Sprint_button_down"]
 [connection signal="button_up" from="HUD/Sprint" to="Player" method="_on_Sprint_button_up"]
@@ -90,7 +97,7 @@ autostart = true
 [connection signal="timeout" from="RemovePlatformTile" to="." method="_on_RemovePlatformTile_timeout"]
 [connection signal="timeout" from="AddRailwayTile" to="." method="_on_AddRailwayTile_timeout"]
 [connection signal="timeout" from="RemoveRailwayTile" to="." method="_on_RemoveRailwayTile_timeout"]
-
-[editable path="Player"]
+[connection signal="coin_collected" from="Coin" to="HUD" method="_on_Coin_coin_collected"]
+[connection signal="tree_exiting" from="Coin" to="Coin" method="_on_Coin_tree_exiting"]
 
 [editable path="HUD"]
