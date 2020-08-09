@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://level_3d/coin/coin.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://World_3d/Coin.gd" type="Script" id=2]
+[ext_resource path="res://level_3d/coin/coin.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.914842, 0.917003, 0.3211 )
+
+[node name="Coin" type="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.551606, -0.3459 )
+script = ExtResource( 2 )
+
+[node name="coin" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.00257155, -0.036798, 0.622565 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114576, 1.06373, -0.0773775 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
