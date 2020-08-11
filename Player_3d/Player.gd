@@ -77,3 +77,6 @@ func _on_SprintTimeout_timeout():
 
 func play_blink():
     AnimPlayer.play("Blink")
+    constant_speed += Vector3(0, 0, 20)
+    yield(get_tree().create_timer(.5), "timeout")
+    constant_speed += Vector3(0, 0, -20)
