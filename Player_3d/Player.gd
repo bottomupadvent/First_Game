@@ -1,12 +1,12 @@
 extends KinematicBody
 
-var tilesize = 5
+var tilesize: int = 5
 signal swipe
 var swipe_start = null
 var minimum_drag = 15
-var velocity = Vector3(0, 0, 0)
-var constant_speed = Vector3(0, 0, -29)
-var first_button_press = true
+var velocity: Vector3 = Vector3.ZERO
+var constant_speed: Vector3 = Vector3(0, 0, -29)
+var first_button_press: bool = true
 onready var sprint_button = get_node("../HUD/Sprint")
 onready var AnimPlayer = $AnimationPlayer
 onready var SprintTimeout = $SprintTimeout

@@ -1,9 +1,7 @@
-extends KinematicBody
+extends RigidBody
 
-var velocity = Vector3(0, 0, -28)
+var velocity: Vector3 = Vector3(0, 0, -28)
 
 func _ready():
-    pass
+    linear_velocity = velocity
 
-func _physics_process(delta):
-    velocity = move_and_slide(velocity)

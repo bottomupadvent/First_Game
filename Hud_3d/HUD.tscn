@@ -13,20 +13,23 @@ __meta__ = {
 [node name="Restart" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -62.0
+margin_left = -28.0
 margin_top = 7.0
 margin_right = -5.0
 margin_bottom = 27.0
-text = "Restart"
+text = "R"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Sprint" type="Button" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = -23.0
-margin_right = 57.0
-margin_bottom = -3.0
-text = "Sprint"
+margin_left = 10.0
+margin_top = -25.0
+margin_right = 32.0
+margin_bottom = -5.0
+text = "S"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,9 +39,8 @@ margin_left = 10.0
 margin_top = 9.0
 margin_right = 50.0
 margin_bottom = 23.0
-text = "something "
+text = "O"
 valign = 1
-uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
