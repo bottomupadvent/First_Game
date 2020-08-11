@@ -39,7 +39,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "." )
+enabled=PoolStringArray( "notes_tab" )
 
 [gdnative]
 
