@@ -25,10 +25,12 @@ func _ready():
         else:
             person = Person2.instance()
         coin = Coin.instance()
-        coin.translation = Vector3 (coin_x_coordinate[randi() % coin_x_coordinate.size()],
-                                    0, -1*(randi() % 1100 + 50))
+
         add_child(person)
         add_child(coin)
+        coin.translation = Vector3 (coin_x_coordinate[randi() % coin_x_coordinate.size()],
+                                    0, -1*(randi() % 1100 + 50))
+        person.speed = person.speedlist.keys()[randi() % person.speedlist.keys().size()]
         person.translation = Vector3(randi() % 35 + -15, 0, 
                                    -1*(randi() % 1100 + 50))
         person.stop_pos = Vector3(randi() % 35 + -15, 0, 

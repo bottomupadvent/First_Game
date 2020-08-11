@@ -45,13 +45,13 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.0939724, 0 )
 
 [node name="CameraFollowOrth" type="Spatial" parent="Player"]
-transform = Transform( 0.830483, 0.277437, -0.483039, 0.235242, 0.611353, 0.755585, 0.504934, -0.741132, 0.442454, -13.1548, 31.8782, 2.87514 )
+transform = Transform( 0.886052, 0.184618, -0.425239, 0.235242, 0.611353, 0.755585, 0.399465, -0.769522, 0.498261, -13.1548, 31.8782, 2.87514 )
 
 [node name="CameraFollowPers" type="Spatial" parent="Player"]
 transform = Transform( 0.909727, 0.135159, -0.392592, 0.235242, 0.611353, 0.755585, 0.342136, -0.779731, 0.52437, -6.713, 25.688, -17.3173 )
 
 [node name="Train" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.252, -8.88976, -166.419 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6449, -10.148, -166.419 )
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
@@ -79,7 +79,7 @@ visible = false
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 65.9321, 24.9158 )
 projection = 1
 current = true
-size = 50.0
+size = 42.0
 target = NodePath("../Player/CameraFollowOrth")
 speed = 2.0
 enabled = true
