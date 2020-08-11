@@ -1,12 +1,14 @@
 extends Area
 
-var stop_pos = Vector3()
-var speed = 5
-var can_move = false
+var stop_pos: Vector3 = Vector3.ZERO
+var speed: int = 5
+var can_move: bool = false
 onready var Player = get_node("../Player")
 var direction_to
 onready var StartTimer = $StartTimer
 onready var AnimPlayer = $People_anim/AnimationPlayer
+onready var PersonSkeleton = $People_anim/Skeleton
+var noOfQueueFree: int = 1
 
 func _ready():
     pass
@@ -14,8 +16,8 @@ func _ready():
 func _physics_process(delta):
     if can_move:
         translation += direction_to * speed * delta
-    if get_translation().z - 30 > Player.get_translation().z:
-        queue_free()
+#    if get_translation().z - 35 > Player.get_translation().z:
+#        queue_free()
     if get_translation() == stop_pos:
         AnimPlayer.play("Idle")
     
@@ -30,3 +32,8 @@ func _on_StartTimer_timeout():
 
 func _on_People_body_entered(_body):
     Player.play_blink()
+
+func _on_VisibilityEnabler_screen_exited():
+    print (noOfQueueFree)
+    noOfQueueFree += 1
+    queue_free()
