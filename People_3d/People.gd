@@ -1,7 +1,8 @@
 extends Area
 
 var stop_pos: Vector3 = Vector3.ZERO
-var speed: int = 5
+var speed: int
+var speedlist = {3: 0.7, 5: 1, 7: 1.3, 11: 1.7}
 var can_move: bool = false
 onready var Player = get_node("../Player")
 var direction_to
@@ -28,12 +29,11 @@ func set_start_timer():
 
 func _on_StartTimer_timeout():
     can_move = true
-    AnimPlayer.play("Walk")
+    AnimPlayer.play("Walk", -1, speedlist[speed])
 
 func _on_People_body_entered(_body):
     Player.play_blink()
 
 func _on_VisibilityEnabler_screen_exited():
-    print (noOfQueueFree)
-    noOfQueueFree += 1
+#    noOfQueueFree += 1
     queue_free()
