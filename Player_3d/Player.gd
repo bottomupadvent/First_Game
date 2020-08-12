@@ -7,10 +7,11 @@ var minimum_drag = 15
 var velocity: Vector3 = Vector3.ZERO
 var constant_speed: Vector3 = Vector3(0, 0, -29)
 var first_button_press: bool = true
+var row: int = 3
 onready var sprint_button = get_node("../HUD/Sprint")
-onready var AnimPlayer = $AnimationPlayer
-onready var SprintTimeout = $SprintTimeout
-onready var Tweening = $Tween
+onready var AnimPlayer: AnimationPlayer = $AnimationPlayer
+onready var SprintTimeout: Timer = $SprintTimeout
+onready var Tweening: Tween = $Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,10 +36,15 @@ func _calculate_swipe(swipe_end):
         return
     var swipe = swipe_end - swipe_start
     if abs(swipe.x) > minimum_drag:
-        if swipe.x > 0:
+        if swipe.x > 0 and row != 1:
             emit_signal("swipe", "right")
-        else:
+            row -= 1
+        elif swipe.x < 0 and row != 4:
             emit_signal("swipe", "left")
+            row += 1
+        else:
+            return
+
 
 func _on_Player_swipe(direction):
     if direction == "right":

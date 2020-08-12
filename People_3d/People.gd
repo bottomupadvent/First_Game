@@ -4,11 +4,11 @@ var stop_pos: Vector3 = Vector3.ZERO
 var speed: int
 var speedlist = {3: 0.7, 5: 1, 7: 1.3, 11: 1.7}
 var can_move: bool = false
-onready var Player = get_node("../Player")
-var direction_to
-onready var StartTimer = $StartTimer
-onready var AnimPlayer = $People_anim/AnimationPlayer
-onready var PersonSkeleton = $People_anim/Skeleton
+onready var Player: KinematicBody = get_node("../Player")
+var direction_to: Vector3
+onready var StartTimer: Timer = $StartTimer
+onready var AnimPlayer: AnimationPlayer = $People_anim/AnimationPlayer
+onready var PersonSkeleton: Skeleton = $People_anim/Skeleton
 var noOfQueueFree: int = 1
 
 func _ready():
@@ -35,5 +35,4 @@ func _on_People_body_entered(_body):
     Player.play_blink()
 
 func _on_VisibilityEnabler_screen_exited():
-#    noOfQueueFree += 1
     queue_free()
