@@ -8,7 +8,7 @@
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.914842, 0.917003, 0.3211 )
+extents = Vector3( 1.111, 0.917003, 0.624175 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Bounce"
@@ -46,7 +46,7 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 
 [node name="coin" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.003, 5, 0.623 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.00257155, -0.036798, 0.622565 )
 mesh = ExtResource( 1 )
 material/0 = SubResource( 1 )
 
@@ -58,7 +58,4 @@ shape = SubResource( 2 )
 autoplay = "Rotate"
 anims/Bounce = SubResource( 3 )
 anims/Rotate = SubResource( 4 )
-
-[node name="VisibilityEnabler" type="VisibilityEnabler" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0800344, 1.08105, -0.0260048 )
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
