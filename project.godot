@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="First_Game"
-run/main_scene="res://World_3d/World.tscn"
+run/main_scene="res://Screens/MainScreen.tscn"
 config/icon="res://icon.png"
 
 [audio]

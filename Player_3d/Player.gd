@@ -52,7 +52,6 @@ func _on_Player_swipe(direction):
                                     move_to_left, 0.1, Tween.TRANS_LINEAR, 
                                     Tween.EASE_IN_OUT)
         Tweening.start()
-    yield(Tweening, "tween_completed")
 
 func _on_Sprint_button_down():
     if (first_button_press == true):
