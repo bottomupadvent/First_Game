@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/background.png" type="Texture" id=2]
+[ext_resource path="res://assets/UserInterface/Title.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/UserInterface/PlayButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/UserInterface/MainMenu.tscn" type="PackedScene" id=5]
+
+[node name="EndScreenFailed" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -63.5
+margin_top = -136.0
+margin_right = 63.5
+margin_bottom = -52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" parent="VBoxContainer" instance=ExtResource( 4 )]
+margin_right = 127.0
+margin_bottom = 38.0
+text = "Retry"
+
+[node name="MainMenu" parent="VBoxContainer" instance=ExtResource( 5 )]
+margin_top = 46.0
+margin_right = 127.0
+margin_bottom = 84.0
+
+[node name="Title" parent="." instance=ExtResource( 3 )]
+margin_left = -74.0
+margin_top = 50.0
+margin_right = 75.0
+margin_bottom = 82.0
+text = "Try Again"
+
+[node name="FinalScore" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -77.0
+margin_top = 174.0
+margin_right = 77.0
+margin_bottom = 215.0
+text = "Current Lvl is %s
+Coins Collected %s "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
