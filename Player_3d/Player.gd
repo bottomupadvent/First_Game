@@ -1,10 +1,10 @@
 extends KinematicBody
 
-var tilesize: int = 5
+const tilesize: int = 5
+const minimum_drag: int = 15
 signal swipe
 var swipe_start: float
 var swipe_end: float
-var minimum_drag: int = 15
 var velocity: Vector3 = Vector3.ZERO
 var constant_speed: Vector3 = Vector3(0, 0, -29)
 var first_button_press: bool = true
@@ -17,7 +17,7 @@ onready var Tweening: Tween = $Tween
 func _ready():
     pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
     if !AnimPlayer.is_playing():
         AnimPlayer.play("Running")
     constant_speed = move_and_slide(constant_speed)
@@ -38,19 +38,16 @@ func _input(event):
 
 func _on_Player_swipe(direction):
     if direction == "right":
-        var move_to_right = get_translation() + Vector3(7.0, 0, -5)
-#        $Player_anim/AnimationPlayer.play("Jump_right", -1, 1.4)
+        var move_to_right = get_translation() + Vector3(7.0, 0, -6)
         Tweening.interpolate_property(self, "translation", get_translation(),
-                                    move_to_right, 0.1, Tween.TRANS_LINEAR, 
-                                    Tween.EASE_IN_OUT)
+                                    move_to_right, 0.2, Tween.TRANS_LINEAR, 
+                                    Tween.EASE_OUT)
         Tweening.start()
-        # $Idle/AnimationPlayer.animation_set_next("Jump_right", "Running")
     else:
-        var move_to_left = get_translation() + Vector3(-7.0, 0, -5)
-#        $Player_anim/AnimationPlayer.play("Jump_left", -1, 1.4)
+        var move_to_left = get_translation() + Vector3(-7.0, 0, -6)
         Tweening.interpolate_property(self, "translation", get_translation(),
-                                    move_to_left, 0.1, Tween.TRANS_LINEAR, 
-                                    Tween.EASE_IN_OUT)
+                                    move_to_left, 0.2, Tween.TRANS_LINEAR, 
+                                    Tween.EASE_OUT)
         Tweening.start()
 
 func _on_Sprint_button_down():

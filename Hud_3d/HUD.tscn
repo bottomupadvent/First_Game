@@ -1,30 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Hud_3d/HUD.gd" type="Script" id=1]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/UserInterface/MainMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/UserInterface/Title.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=6]
 
 [node name="HUD" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Restart" type="Button" parent="."]
+[node name="Pause" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -28.0
-margin_top = 7.0
-margin_right = -5.0
-margin_bottom = 27.0
-text = "R"
+margin_left = -42.0
+margin_top = 10.0
+margin_right = -9.0
+margin_bottom = 41.0
+text = "P"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -32,10 +31,10 @@ __meta__ = {
 [node name="Sprint" type="Button" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = -25.0
-margin_right = 32.0
-margin_bottom = -5.0
+margin_left = 14.0
+margin_top = -46.0
+margin_right = 49.0
+margin_bottom = -15.0
 text = "S"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -46,8 +45,7 @@ margin_left = 10.0
 margin_top = 9.0
 margin_right = 50.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 1 )
-text = "O"
+text = "C : %s"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -61,11 +59,66 @@ autostart = true
 [node name="GameTimerLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -18.0
-margin_top = 16.0
-margin_right = 22.0
-margin_bottom = 30.0
-custom_fonts/font = SubResource( 2 )
+margin_left = -20.0
+margin_top = 22.0
+margin_right = 20.0
+margin_bottom = 41.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DeathLabel" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 34.0
+margin_right = 66.0
+margin_bottom = 54.0
+text = "D : %s"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.364706 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="PauseOverlay" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -56.0
+margin_top = 64.0
+margin_right = 56.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 6 )
+text = "Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -49.0
+margin_top = -126.0
+margin_right = 49.0
+margin_bottom = -42.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="PauseOverlay/VBoxContainer"]
+margin_right = 98.0
+margin_bottom = 38.0
+size_flags_vertical = 3
+text = "Resume"
+
+[node name="MainMenu" parent="PauseOverlay/VBoxContainer" instance=ExtResource( 4 )]
+[connection signal="button_up" from="Pause" to="." method="_on_Pause_button_up"]
+[connection signal="button_up" from="PauseOverlay/VBoxContainer/Resume" to="." method="_on_Resume_button_up"]
