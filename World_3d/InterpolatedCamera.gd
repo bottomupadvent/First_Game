@@ -26,4 +26,3 @@ func on_camera_shake():
     
     set_translation(campos)
     time = 0
-    

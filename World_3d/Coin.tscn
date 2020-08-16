@@ -4,11 +4,13 @@
 [ext_resource path="res://World_3d/Coin.gd" type="Script" id=2]
 [ext_resource path="res://level_3d/coin/coin.png" type="Texture" id=3]
 
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
+
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 1.16404, 0.917003, 0.872201 )
 
 [sub_resource type="Animation" id=3]
-resource_name = "Bounce"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("coin:translation")
@@ -24,7 +26,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Rotate"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -39,11 +40,14 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 3 )
-
 [node name="Coin" type="Area"]
+transform = Transform( -0.717556, 0, 0.696502, 0, 1, 0, -0.696502, 0, -0.717556, 0, 0, 0 )
 script = ExtResource( 2 )
+
+[node name="coin" type="MeshInstance" parent="."]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0646286, 0.592346 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114576, 1.06373, -0.0773775 )
@@ -53,9 +57,4 @@ shape = SubResource( 2 )
 autoplay = "Rotate"
 anims/Bounce = SubResource( 3 )
 anims/Rotate = SubResource( 4 )
-
-[node name="coin" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.00257155, -0.036798, 0.622565 )
-mesh = ExtResource( 1 )
-material/0 = SubResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

@@ -1,7 +1,6 @@
 extends Spatial
 
-export (PackedScene) var Person1
-export (PackedScene) var Person2
+var Person2 = preload("res://People_3d/Person2.tscn")
 export (PackedScene) var Coin
 onready var track: GridMap = $Track
 onready var platform: GridMap = $Platform
@@ -14,6 +13,7 @@ var del_railway_tile: int = 9
 var angle: float
 var person_rot: Vector3
 var direction_to: Vector3
+var personholder: Spatial
 var person: Area
 var coin: Area
 #original values = [-7.5, -0.5, 6.5, 13.5]
@@ -22,14 +22,12 @@ var coin_x_coordinate = [-7.1, -0.1, 6.9, 13.9]
 func _ready():
     randomize()  
     for i in range(total_people): 
-        if (i%2 == 0):
-            person = Person1.instance()
-        else:
-            person = Person2.instance()
+#        if (i%2 == 0):
+#            person = Person1.instance()
+#        else:
+        personholder = Person2.instance()
+        person = personholder.get_node("People")
         coin = Coin.instance()
-        add_child(person)
-        add_child(coin)
-        HUD.coin_connect_signal(coin)
         coin.translation = Vector3 (coin_x_coordinate[randi() % coin_x_coordinate.size()],
                                     0, -1*(randi() % 1100 + 50))
         person.speed = person.speedlist.keys()[randi() % person.speedlist.keys().size()]
@@ -39,15 +37,15 @@ func _ready():
                                 -1*(randi() % 1100 + 50))
 
         direction_to = person.translation.direction_to(person.stop_pos)
-                         
+
         angle = atan2(direction_to.x, direction_to.z)
         person_rot = person.get_rotation()
         person_rot.y = angle
         person.set_rotation(person_rot)
+        add_child(personholder)
         person.set_start_timer()
+        add_child(coin)
 
-func _on_Restart_pressed():
-    var _scene_reload = get_tree().reload_current_scene()
 
 func _on_AddPlatformTile_timeout():
     platform.set_cell_item(10, 0, add_platform_tile, 0)
