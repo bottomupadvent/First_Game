@@ -9,13 +9,14 @@ var velocity: Vector3 = Vector3.ZERO
 var constant_speed: Vector3 = Vector3(0, 0, -29)
 var first_button_press: bool = true
 var row: int = 3
-onready var sprint_button = get_node("../HUD/Sprint")
+onready var sprint_button = get_node("../../HUD/Sprint")
 onready var AnimPlayer: AnimationPlayer = $AnimationPlayer
 onready var SprintTimeout: Timer = $SprintTimeout
 onready var Tweening: Tween = $Tween
 
 func _ready():
-    pass
+    sprint_button.connect("button_down", self, "_on_Sprint_button_down")
+    sprint_button.connect("button_up", self, "_on_Sprint_button_up")
 
 func _physics_process(_delta):
     if !AnimPlayer.is_playing():
@@ -38,16 +39,16 @@ func _input(event):
 
 func _on_Player_swipe(direction):
     if direction == "right":
-        var move_to_right = get_translation() + Vector3(7.0, 0, -6)
+        var move_to_right = get_translation() + Vector3(7.0, 0, -3)
         Tweening.interpolate_property(self, "translation", get_translation(),
-                                    move_to_right, 0.2, Tween.TRANS_LINEAR, 
-                                    Tween.EASE_OUT)
+                                    move_to_right, 0.1, Tween.TRANS_LINEAR, 
+                                    Tween.EASE_IN_OUT)
         Tweening.start()
     else:
-        var move_to_left = get_translation() + Vector3(-7.0, 0, -6)
+        var move_to_left = get_translation() + Vector3(-7.0, 0, -3)
         Tweening.interpolate_property(self, "translation", get_translation(),
-                                    move_to_left, 0.2, Tween.TRANS_LINEAR, 
-                                    Tween.EASE_OUT)
+                                    move_to_left, 0.1, Tween.TRANS_LINEAR, 
+                                    Tween.EASE_IN_OUT)
         Tweening.start()
 
 func _on_Sprint_button_down():

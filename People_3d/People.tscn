@@ -3,20 +3,23 @@
 [ext_resource path="res://People_3d/People.gd" type="Script" id=1]
 [ext_resource path="res://addons/smoothing.gd" type="Script" id=2]
 
-[node name="People" type="Area"]
+[node name="PeopleHolder" type="Spatial"]
+
+[node name="People" type="Area" parent="."]
 gravity = 0.0
 script = ExtResource( 1 )
 
-[node name="StartTimer" type="Timer" parent="."]
+[node name="StartTimer" type="Timer" parent="People"]
 one_shot = true
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="CollisionShape" type="CollisionShape" parent="People"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.45624, 0.19091 )
 
-[node name="VisibilityEnabler" type="VisibilityEnabler" parent="."]
+[node name="VisibilityEnabler" type="VisibilityEnabler" parent="People"]
 
 [node name="Smoothing" type="Spatial" parent="."]
 script = ExtResource( 2 )
-[connection signal="body_entered" from="." to="." method="_on_People_body_entered"]
-[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
-[connection signal="screen_exited" from="VisibilityEnabler" to="." method="_on_VisibilityEnabler_screen_exited"]
+target = NodePath("../People")
+[connection signal="body_entered" from="People" to="People" method="_on_People_body_entered"]
+[connection signal="timeout" from="People/StartTimer" to="People" method="_on_StartTimer_timeout"]
+[connection signal="screen_exited" from="People/VisibilityEnabler" to="People" method="_on_VisibilityEnabler_screen_exited"]
