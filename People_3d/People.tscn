@@ -16,6 +16,7 @@ one_shot = true
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.45624, 0.19091 )
 
 [node name="VisibilityEnabler" type="VisibilityEnabler" parent="People"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14844, 0 )
 
 [node name="Smoothing" type="Spatial" parent="."]
 script = ExtResource( 2 )
