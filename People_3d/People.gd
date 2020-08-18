@@ -5,6 +5,7 @@ var speed: int
 const speedlist = {3: 0.7, 5: 1, 7: 1.3, 11: 1.7}
 var can_move: bool = false
 onready var Player: KinematicBody = get_node("../../PlayerHolder/Player")
+onready var PeopleHolder: Spatial = get_node("..")
 var direction_to: Vector3
 onready var StartTimer: Timer = $StartTimer
 onready var AnimPlayer: AnimationPlayer = $AnimationPlayer
@@ -32,4 +33,4 @@ func _on_People_body_entered(_body):
     Player.play_blink()
 
 func _on_VisibilityEnabler_screen_exited():
-    queue_free()
+    PeopleHolder.queue_free()

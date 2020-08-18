@@ -1,11 +1,10 @@
 extends Spatial
 
 var Person2 = preload("res://People_3d/Person2.tscn")
-export (PackedScene) var Coin
+var Coin = preload("res://World_3d/Coin.tscn")
 onready var track: GridMap = $Track
 onready var platform: GridMap = $Platform
 onready var HUD: Control = $HUD
-var total_people: int = 30
 var add_platform_tile: int = 5
 var del_platform_tile: int = -1
 var add_railway_tile: int  = 409
@@ -21,7 +20,7 @@ var coin_x_coordinate = [-7.1, -0.1, 6.9, 13.9]
 
 func _ready():
     randomize()  
-    for i in range(total_people): 
+    for i in range(PlayerData.total_people): 
 #        if (i%2 == 0):
 #            person = Person1.instance()
 #        else:
@@ -31,9 +30,9 @@ func _ready():
         coin.translation = Vector3 (coin_x_coordinate[randi() % coin_x_coordinate.size()],
                                     0, -1*(randi() % 1100 + 50))
         person.speed = person.speedlist.keys()[randi() % person.speedlist.keys().size()]
-        person.translation = Vector3(randi() % 28 + -10, 0, 
+        person.translation = Vector3(randi() % 20 + -10, 0, 
                                    -1*(randi() % 1100 + 50))
-        person.stop_pos = Vector3(randi() % 28 + -10, 0, 
+        person.stop_pos = Vector3(randi() % 20 + -10, 0, 
                                 -1*(randi() % 1100 + 50))
 
         direction_to = person.translation.direction_to(person.stop_pos)
@@ -46,6 +45,8 @@ func _ready():
         person.set_start_timer()
         add_child(coin)
 
+#func _process(delta):
+#    print ($InterpolatedCamera.get_viewport().get_size())
 
 func _on_AddPlatformTile_timeout():
     platform.set_cell_item(10, 0, add_platform_tile, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player_3d/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World_3d/InterpolatedCamera.gd" type="Script" id=2]
@@ -7,17 +7,17 @@
 [ext_resource path="res://World_3d/platform_final.meshlib" type="MeshLibrary" id=5]
 [ext_resource path="res://Hud_3d/HUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://World_3d/railway_track.meshlib" type="MeshLibrary" id=7]
-[ext_resource path="res://World_3d/Coin.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 0, 0 )
 script = ExtResource( 3 )
-Coin = ExtResource( 10 )
 
 [node name="Track" type="GridMap" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.357, -7, 0 )
 mesh_library = ExtResource( 7 )
 cell_scale = 5.0
+collision_layer = 16
+collision_mask = 0
 data = {
 "cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 0, 16, 65277, 0, 16, 65302, 0, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 0, 16, 65477, 0, 16, 65502, 0, 16, 65527, 0 )
 }
@@ -31,6 +31,8 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, -7, 
 mesh_library = ExtResource( 5 )
 cell_size = Vector3( 1, 1, 151.8 )
 cell_scale = 6.0
+collision_layer = 16
+collision_mask = 0
 data = {
 "cells": PoolIntArray( 10, 0, 0, 10, 1, 0, 10, 2, 0, 10, 3, 0, 10, 4, 0, 10, 65535, 0 )
 }
@@ -39,12 +41,13 @@ __meta__ = {
 }
 
 [node name="TrainHolder" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.6774, -14.2943, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.6774, -14.2943, 276.045 )
 
 [node name="PlayerHolder" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1, 0, 0 )
 
-[node name="CameraFollowOrth" type="Spatial" parent="PlayerHolder/Smoothing" index="0"]
-transform = Transform( 0.909727, 0.135159, -0.392592, 0.235242, 0.611353, 0.755585, 0.342136, -0.779731, 0.52437, -8.73522, 25.782, 2.59847 )
+[node name="CameraFollowOrth" type="Spatial" parent="PlayerHolder/Smoothing" index="1"]
+transform = Transform( 0.950386, 0.144351, -0.275555, 0, 0.885815, 0.464038, 0.311075, -0.441015, 0.841866, -10.3612, 30.3159, 43.2032 )
 
 [node name="HUD" parent="." instance=ExtResource( 6 )]
 
@@ -73,13 +76,6 @@ target = NodePath("../PlayerHolder/Smoothing/CameraFollowOrth")
 speed = 2.0
 enabled = true
 script = ExtResource( 2 )
-
-[node name="CameraFollowPers" type="Spatial" parent="."]
-transform = Transform( 0.909727, 0.135159, -0.392592, 0.235242, 0.611353, 0.755585, 0.342136, -0.779731, 0.52437, -14.213, 25.782, 2.59847 )
-
-[node name="Coin" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.3326, -0.55185, 27.7654 )
-visible = false
 [connection signal="timeout" from="AddPlatformTile" to="." method="_on_AddPlatformTile_timeout"]
 [connection signal="timeout" from="RemovePlatformTile" to="." method="_on_RemovePlatformTile_timeout"]
 [connection signal="timeout" from="AddRailwayTile" to="." method="_on_AddRailwayTile_timeout"]

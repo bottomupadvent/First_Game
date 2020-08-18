@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Train_3d/Train.gd" type="Script" id=1]
 [ext_resource path="res://level_3d/train/train_1st_dabba-0.png" type="Texture" id=2]
@@ -6,34 +6,37 @@
 [ext_resource path="res://level_3d/train/train_1st_dabba-0.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://level_3d/train/train_2nd_dabba-0.png" type="Texture" id=5]
 [ext_resource path="res://addons/smoothing.gd" type="Script" id=6]
+[ext_resource path="res://Train_3d/TrainHolder.gd" type="Script" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=12]
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=13]
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=14]
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=15]
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=9]
 albedo_texture = ExtResource( 5 )
 
 [node name="TrainHolder" type="Spatial"]
+script = ExtResource( 7 )
 
 [node name="Train" type="RigidBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, -29 )
+collision_layer = 4
 gravity_scale = 0.0
 script = ExtResource( 1 )
 
@@ -46,37 +49,37 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, -29 )
 script = ExtResource( 6 )
 target = NodePath("../../TrainHolder/Train")
 
-[node name="1stDabba" type="MeshInstance" parent="Smoothing"]
+[node name="Dabba1" type="MeshInstance" parent="Smoothing"]
 transform = Transform( 3, 0, 0, 0, 3.5, 0, 0, 0, 5, 0, 5, -316 )
 mesh = ExtResource( 4 )
 material/0 = SubResource( 2 )
 
-[node name="2ndDabba" type="MeshInstance" parent="Smoothing"]
+[node name="Dabba2" type="MeshInstance" parent="Smoothing"]
 transform = Transform( 3, 0, 0, 0, 3.5, 0, 0, 0, 5, 31.5, 5, -243 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 3 )
+material/0 = SubResource( 10 )
 
-[node name="2ndDabba2" type="MeshInstance" parent="Smoothing"]
+[node name="Dabba3" type="MeshInstance" parent="Smoothing"]
 transform = Transform( 3, 0, 0, 0, 3.5, 0, 0, 0, 5, 31.5, 5, -170 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 4 )
+material/0 = SubResource( 12 )
 
-[node name="2ndDabba3" type="MeshInstance" parent="Smoothing"]
+[node name="Dabba4" type="MeshInstance" parent="Smoothing"]
 transform = Transform( 3, 0, 0, 0, 3.5, 0, 0, 0, 5, 31.5, 5, -97 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 5 )
+material/0 = SubResource( 13 )
 
-[node name="2ndDabba4" type="MeshInstance" parent="Smoothing"]
+[node name="Dabba5" type="MeshInstance" parent="Smoothing"]
 transform = Transform( 3, 0, 0, 0, 3.5, 0, 0, 0, 5, 31.5, 5, -24 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 6 )
+material/0 = SubResource( 14 )
 
-[node name="2ndDabba5" type="MeshInstance" parent="Smoothing"]
+[node name="Dabba6" type="MeshInstance" parent="Smoothing"]
 transform = Transform( 3, 0, 0, 0, 3.5, 0, 0, 0, 5, 31.5, 5, 49 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 7 )
+material/0 = SubResource( 15 )
 
-[node name="2ndDabba6" type="MeshInstance" parent="Smoothing"]
+[node name="Dabba7" type="MeshInstance" parent="Smoothing"]
 transform = Transform( 3, 0, 0, 0, 3.5, 0, 0, 0, 5, 31.5, 5, 122 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 8 )
+material/0 = SubResource( 9 )

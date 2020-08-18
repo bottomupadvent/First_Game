@@ -42,6 +42,9 @@ tracks/0/keys = {
 
 [node name="Coin" type="Area"]
 transform = Transform( -0.717556, 0, 0.696502, 0, 1, 0, -0.696502, 0, -0.717556, 0, 0, 0 )
+gravity = 0.0
+monitorable = false
+collision_layer = 8
 script = ExtResource( 2 )
 
 [node name="coin" type="MeshInstance" parent="."]
