@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://People_3d/People.gd" type="Script" id=1]
-[ext_resource path="res://addons/smoothing.gd" type="Script" id=2]
 
 [node name="PeopleHolder" type="Spatial"]
 
@@ -19,10 +18,6 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 2.45
 
 [node name="VisibilityEnabler" type="VisibilityEnabler" parent="People"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14844, 0 )
-
-[node name="Smoothing" type="Spatial" parent="."]
-script = ExtResource( 2 )
-target = NodePath("../People")
 [connection signal="body_entered" from="People" to="People" method="_on_People_body_entered"]
 [connection signal="timeout" from="People/StartTimer" to="People" method="_on_StartTimer_timeout"]
 [connection signal="screen_exited" from="People/VisibilityEnabler" to="People" method="_on_VisibilityEnabler_screen_exited"]
