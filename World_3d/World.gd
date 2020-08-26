@@ -17,22 +17,24 @@ var person: Area
 var coin: Area
 #original values = [-7.5, -0.5, 6.5, 13.5]
 var coin_x_coordinate = [-7.1, -0.1, 6.9, 13.9]
+onready var Player: KinematicBody = $PlayerHolder/Player
+var player_z: int
 
 func _ready():
-    randomize()  
-    for i in range(PlayerData.total_people): 
-#        if (i%2 == 0):
-#            person = Person1.instance()
-#        else:
+    randomize()
+    spawn_people()
+    spawn_coins()
+
+func spawn_people():
+    for i in range(PlayerData.people_per_timer):
+        player_z = int(Player.get_translation().z)
         personholder = Person2.instance()
         person = personholder.get_node("People")
-        coin = Coin.instance()
-        coin.translation = Vector3 (coin_x_coordinate[randi() % coin_x_coordinate.size()],
-                                    0, -1*(randi() % 1100 + 50))
+
         person.speed = person.speedlist.keys()[randi() % person.speedlist.keys().size()]
-        person.translation = Vector3(randi() % 20 + -10, 0, 
-                                   -1*(randi() % 1100 + 50))
-        person.stop_pos = Vector3(randi() % 20 + -10, 0, 
+        person.translation = Vector3(randi() % 20 + -5, 0,
+                                   -1*(randi() % ((player_z + 300) + (player_z + 150))))
+        person.stop_pos = Vector3(randi() % 20 + -5, 0,
                                 -1*(randi() % 1100 + 50))
 
         direction_to = person.translation.direction_to(person.stop_pos)
@@ -43,10 +45,13 @@ func _ready():
         person.set_rotation(person_rot)
         add_child(personholder)
         person.set_start_timer()
-        add_child(coin)
 
-#func _process(delta):
-#    print ($InterpolatedCamera.get_viewport().get_size())
+func spawn_coins():
+    for i in range(PlayerData.total_people):
+        coin = Coin.instance()
+        coin.translation = Vector3 (coin_x_coordinate[randi() % coin_x_coordinate.size()],
+                                        0, -1*(randi() % 1100 + 50))
+        add_child(coin)
 
 func _on_AddPlatformTile_timeout():
     platform.set_cell_item(10, 0, add_platform_tile, 0)
