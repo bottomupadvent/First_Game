@@ -17,13 +17,13 @@ func _on_Resume_button_up():
     scene_tree.paused = false
     pause_overlay.visible = false
     GameTimer.paused = false
-    
+
 func _ready():
     PlayerData.connect("coin_collected", self, "_on_coin_collected")
     PlayerData.connect("player_died", self, "_on_player_died")
     CoinLabel.text = str(PlayerData.coins)
     DeathLabel.text = str(PlayerData.deaths)
-    
+
 func _process(_delta):
     GameTimerLabel.text = str(int(GameTimer.get_time_left()))
 

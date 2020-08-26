@@ -1,11 +1,11 @@
-extends RigidBody
+extends KinematicBody
 
-var velocity: Vector3 = Vector3(0, 0, -28)
+var constant_speed: = Vector3(0, 0, -39)
 #signal entered_dabba_area(dabba)
 #signal exited_dabba_area
 
-func _ready():
-    linear_velocity = velocity
+func _physics_process(delta):
+    constant_speed = move_and_slide(constant_speed)
 
 ## Same function for all areas of train dabbas when entered
 #func _on_Area_body_entered(body, dabba):

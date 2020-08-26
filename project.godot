@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="First_Game"
-run/main_scene="res://Screens/MainScreen.tscn"
+run/main_scene="res://World_3d/World.tscn"
 config/icon="res://icon.png"
 
 [audio]
@@ -45,7 +45,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( ".", "notes_tab" )
+enabled=PoolStringArray( "notes_tab" )
 
 [gdnative]
 
@@ -98,11 +98,6 @@ pointing/emulate_touch_from_mouse=true
 3d_physics/layer_3="Train"
 3d_physics/layer_4="Coins"
 3d_physics/layer_5="Ground"
-
-[physics]
-
-common/physics_fps=30
-common/physics_jitter_fix=0.0
 
 [rendering]
 
