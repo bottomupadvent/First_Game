@@ -45,6 +45,7 @@ tracks/0/keys = {
 [node name="PlayerHolder" type="Spatial"]
 
 [node name="Player" type="KinematicBody" parent="."]
+transform = Transform( 0.999991, 0.00421721, 0, -0.00421721, 0.999991, 0.000392405, 1.65486e-06, -0.000392402, 1, 0, 0, 0 )
 collision_mask = 0
 script = ExtResource( 1 )
 
@@ -177,10 +178,14 @@ bones/24/enabled = true
 bones/24/bound_children = [  ]
 
 [node name="unamed" type="MeshInstance" parent="Player/Skeleton"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000620635, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="Camera" type="Camera" parent="Player"]
+[node name="Spatial" type="Spatial" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.983978, -0.178287, 0, 0.178287, 0.983978, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="Player/Spatial"]
 transform = Transform( 0.920272, 0.20134, -0.335502, 0.0990821, 0.709588, 0.697615, 0.378526, -0.675238, 0.633065, -18.0281, 39.117, 24.9384 )
 projection = 1
 current = true
@@ -207,7 +212,7 @@ anims/Jump_right = ExtResource( 4 )
 anims/Running = ExtResource( 5 )
 
 [node name="SpawnPeople" type="Timer" parent="Player"]
-wait_time = 1.5
+wait_time = 3.0
 autostart = true
 [connection signal="swipe" from="Player" to="Player" method="_on_Player_swipe"]
 [connection signal="timeout" from="Player/SprintTimeout" to="Player" method="_on_SprintTimeout_timeout"]

@@ -112,6 +112,9 @@ size_flags_vertical = 3
 text = "Resume"
 
 [node name="MainMenu" parent="PauseOverlay/VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 46.0
+margin_right = 98.0
+margin_bottom = 84.0
 [connection signal="button_up" from="Pause" to="." method="_on_Pause_button_up"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_GameTimer_timeout"]
 [connection signal="button_up" from="PauseOverlay/VBoxContainer/Resume" to="." method="_on_Resume_button_up"]

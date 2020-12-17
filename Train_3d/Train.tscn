@@ -34,7 +34,7 @@ albedo_texture = ExtResource( 5 )
 script = ExtResource( 7 )
 
 [node name="Train" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, -29 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, -29 )
 collision_layer = 4
 script = ExtResource( 1 )
 

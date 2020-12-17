@@ -4,7 +4,7 @@ func _ready():
     pass
 
 func _on_Coin_body_entered(body):
-    PlayerData.coins += 1 #PlayerData is a singleton
+    PlayerData.coins += 1
     $AnimationPlayer.play("Bounce")
 #    yield(get_tree().create_timer(.7), "timeout")
 

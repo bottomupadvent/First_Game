@@ -7,7 +7,7 @@ signal shake_camera
 var deaths: int = 3 setget set_deaths, get_deaths
 var coins: int = 0 setget set_coins, get_coins
 var total_people: int = 30
-var people_per_timer: int = 3
+var people_per_timer: int = 2
 
 func reset():
     deaths = 3

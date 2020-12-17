@@ -15,7 +15,7 @@ script = ExtResource( 3 )
 [node name="PlayerHolder" parent="." instance=ExtResource( 1 )]
 
 [node name="TrainHolder" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2993, -14.2943, -218.289 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5671, -14.2943, -81.5539 )
 
 [node name="Track" type="GridMap" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.357, -7, 0 )
@@ -24,7 +24,7 @@ cell_scale = 5.0
 collision_layer = 16
 collision_mask = 0
 data = {
-"cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 536870912, 16, 65277, 536870912, 16, 65302, 0, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 0, 16, 65477, 0, 16, 65502, 0, 16, 65527, 0 )
+"cells": PoolIntArray( 16, 65152, 0, 16, 65177, 0, 16, 65202, 0, 16, 65227, 0, 16, 65252, 0, 16, 65277, 0, 16, 65302, 0, 16, 65327, 0, 16, 65352, 0, 16, 65377, 0, 16, 65402, 0, 16, 65427, 0, 16, 65452, 0, 16, 65477, 0, 16, 65502, 0, 16, 65527, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -39,7 +39,7 @@ cell_scale = 6.0
 collision_layer = 16
 collision_mask = 0
 data = {
-"cells": PoolIntArray( 10, 0, 0, 10, 1, 0, 10, 2, 0, 10, 3, 0, 10, 4, 536870912, 10, 65535, 0 )
+"cells": PoolIntArray( 11, 0, 0, 11, 1, 0, 11, 2, 0, 11, 3, -1610612736, 10, 4, 1, 11, 4, -1610612736, 11, 65535, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0

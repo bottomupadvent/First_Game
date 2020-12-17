@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var constant_speed: = Vector3(0, 0, -39)
+var constant_speed: = Vector3(0, 0, -31)
 #signal entered_dabba_area(dabba)
 #signal exited_dabba_area
 

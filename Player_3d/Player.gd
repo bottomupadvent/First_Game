@@ -8,7 +8,7 @@ signal swipe
 var swipe_start: float
 var swipe_end: float
 var velocity: Vector3 = Vector3.ZERO
-var constant_speed: Vector3 = Vector3(0, 0, -40)
+var constant_speed: Vector3 = Vector3(0, 0, -30)
 var first_button_press: bool = false
 var row: int = 3
 var input_index
@@ -25,10 +25,8 @@ func _ready():
 #    Train.connect("exited_dabba_area", self, "_on_Dabba_Area_exited")
     sprint_button.connect("button_down", self, "_on_Sprint_button_down")
     sprint_button.connect("button_up", self, "_on_Sprint_button_up")
-    pass
 
 func _physics_process(delta):
-
     constant_speed = move_and_slide(constant_speed)
 
 func _input(event):
@@ -68,11 +66,11 @@ func _on_Player_swipe(direction):
         Tweening.start()
 
 func _on_Sprint_button_down():
-    if (first_button_press == true):
-        first_button_press = false
-        SprintTimeout.start(SprintTimeout.wait_time)
-    else:
-        SprintTimeout.set_paused(false)
+#    if (first_button_press == true):
+#        first_button_press = false
+#        SprintTimeout.start(SprintTimeout.wait_time)
+#    else:
+    SprintTimeout.set_paused(false)
     constant_speed += Vector3(0, 0, -7)
     AnimPlayer.playback_speed = 1.4
 
@@ -90,7 +88,7 @@ func play_blink():
     AnimPlayer.play("Blink")
     constant_speed += Vector3(0, 0, 20)
     yield(get_tree().create_timer(.8), "timeout")
-    constant_speed += Vector3(0, 0, -20)
+    constant_speed += Vector3(0, 0, -30)
     AnimPlayer.play("Running")
 
 func _on_SpawnPeople_timeout():
@@ -102,5 +100,3 @@ func _on_SpawnPeople_timeout():
 #
 #func _on_Dabba_Area_exited():
 #    move_into_dabba = false
-
-

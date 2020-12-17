@@ -27,18 +27,17 @@ func _ready():
 
 func spawn_people():
     for i in range(PlayerData.people_per_timer):
-        player_z = int(Player.get_translation().z)
         personholder = Person2.instance()
         person = personholder.get_node("People")
-
         person.speed = person.speedlist.keys()[randi() % person.speedlist.keys().size()]
-        person.translation = Vector3(randi() % 20 + -5, 0,
-                                   -1*(randi() % ((player_z + 300) + (player_z + 150))))
         person.stop_pos = Vector3(randi() % 20 + -5, 0,
                                 -1*(randi() % 1100 + 50))
-
+        player_z = int(Player.get_translation().z)
+        person.translation = Vector3(randi() % 20 + -5, 0,
+                                   -1*(player_z + 400))
         direction_to = person.translation.direction_to(person.stop_pos)
 
+        # Equivalent to vector2.angle()
         angle = atan2(direction_to.x, direction_to.z)
         person_rot = person.get_rotation()
         person_rot.y = angle
@@ -54,11 +53,11 @@ func spawn_coins():
         add_child(coin)
 
 func _on_AddPlatformTile_timeout():
-    platform.set_cell_item(10, 0, add_platform_tile, 0)
+    platform.set_cell_item(11, 0, add_platform_tile, 0)
     add_platform_tile += 1
 
 func _on_RemovePlatformTile_timeout():
-    platform.set_cell_item(10, 0, del_platform_tile, -1)
+    platform.set_cell_item(11, 0, del_platform_tile, -1)
     del_platform_tile += 1
 
 func _on_AddRailwayTile_timeout():

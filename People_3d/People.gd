@@ -52,8 +52,8 @@ func _on_StateChangeTimer_timeout():
         var angle: = atan2(direction_to.x, direction_to.z)
         var person_rot: = get_rotation()
         person_rot.y = angle
-        set_rotation(lerp(get_rotation(), person_rot, 0.5))
         set_physics_process(true)
+        set_rotation(lerp(get_rotation(), person_rot, 0.5))
 
 func _on_People_body_entered(body):
     PlayerData.deaths -= 1

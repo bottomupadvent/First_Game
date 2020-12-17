@@ -4,7 +4,7 @@
 [ext_resource path="res://World_3d/Coin.gd" type="Script" id=2]
 [ext_resource path="res://level_3d/coin/coin.png" type="Texture" id=3]
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="BoxShape" id=2]
@@ -26,6 +26,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
+length = 1.6
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rotation_degrees")
@@ -34,23 +35,23 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.8, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 180, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
 [node name="Coin" type="Area"]
-transform = Transform( -0.870093, 0, 0.492889, 0, 1, 0, -0.492889, 0, -0.870093, 0, 0, 0 )
+transform = Transform( 0.398315, 0, 0.917249, 0, 1, 0, -0.917249, 0, 0.398315, 0, 0, 0 )
 gravity = 0.0
 monitorable = false
 collision_layer = 8
 script = ExtResource( 2 )
 
 [node name="coin" type="MeshInstance" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.003, 5, 0.623 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.00257155, -0.036798, 0.622565 )
 mesh = ExtResource( 1 )
-material/0 = SubResource( 5 )
+material/0 = SubResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -0.0336601, 1.06373, -0.0377862 )
@@ -62,6 +63,6 @@ anims/Bounce = SubResource( 3 )
 anims/Rotate = SubResource( 4 )
 
 [node name="VisibilityEnabler" type="VisibilityEnabler" parent="."]
-transform = Transform( 1, 0, -1.78814e-07, 0, 1, 0, 1.78814e-07, 0, 1, 4.1564, 1.16632, 7.33726 )
+transform = Transform( 1, 0, -1.78814e-07, 0, 1, 0, 1.78814e-07, 0, 1, -0.0223807, 1.16632, -0.0395085 )
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
 [connection signal="screen_exited" from="VisibilityEnabler" to="." method="_on_VisibilityEnabler_screen_exited"]
